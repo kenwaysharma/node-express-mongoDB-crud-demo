@@ -3,10 +3,11 @@ const express = require('express');
 const { default: mongoose } = require('mongoose');
 const User = require("./models/User");
 const app = express()
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+const logger = require("./middleware/logger");
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
+app.use(logger)
 //Database connection
 mongoose.connect(
     process.env.MONGODB_URI, 
